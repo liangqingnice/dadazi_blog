@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.dadazi.dadaziblog.mapper.SysFileMapper">
+
+    <resultMap id="BaseResultMap" type="online.dadazi.dadaziblog.pojo.SysFile">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="filePath" column="file_path" jdbcType="VARCHAR"/>
+            <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+            <result property="fileSize" column="file_size" jdbcType="BIGINT"/>
+            <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="originalName" column="original_name" jdbcType="VARCHAR"/>
+            <result property="delMark" column="del_mark" jdbcType="CHAR"/>
+            <result property="createUser" column="create_user" jdbcType="BIGINT"/>
+            <result property="checksum" column="checksum" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,file_path,file_name,
+        file_size,file_type,create_time,
+        update_time,original_name,del_mark,
+        create_user,checksum
+    </sql>
+</mapper>

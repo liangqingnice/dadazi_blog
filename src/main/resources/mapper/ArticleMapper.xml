@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.dadazi.dadaziblog.mapper.ArticleMapper">
+
+    <resultMap id="BaseResultMap" type="online.dadazi.dadaziblog.pojo.Article">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delMark" column="del_mark" jdbcType="CHAR"/>
+            <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+            <result property="categoryAlias" column="category_alias" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,content,
+        cover_img,state,category_id,
+        create_user,create_time,update_time,
+        del_mark
+    </sql>
+
+    <select id="selectPageVo" resultMap="BaseResultMap">
+        SELECT a.id,a.title,a.content, a.cover_img,a.state,a.category_id,a.create_user,a.create_time,a.update_time,ac.category_name,u.username
+        FROM article as a LEFT JOIN article_category ac on a.category_id=ac.id JOIN sys_user u on u.id=a.create_user
+        <where>
+            AND a.del_mark=0
+            <if test="article!=null">
+                <if test="article.categoryId!=null">
+                    AND a.category_id =#{article.categoryId}
+                </if>
+                <if test="article.createUser!=null">
+                    AND a.create_user =#{article.createUser}
+                </if>
+                <if test="article.title!=null">
+                    AND a.title like concat('%', #{article.title},'%')
+                </if>
+            </if>
+        </where>
+    </select>
+</mapper>

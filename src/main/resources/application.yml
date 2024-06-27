@@ -1,0 +1,60 @@
+
+spring:
+  servlet:
+    multipart:
+      # 整个请求最大大小
+      max-file-size: 200MB
+      # 整个请求最大大小
+      max-request-size: 1GB
+  profiles:
+    active: @env@
+  application:
+    name: dadazi-blog
+
+  main:
+    banner-mode: off
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:2208/dadazi-blog
+    username: root
+    password: 123456
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      username:
+      password:
+  thymeleaf:
+      check-template-location: false
+  jackson:
+    default-property-inclusion: non_null
+#mp配置
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: "del_mark"
+      logic-delete-value: '1'
+      logic-not-delete-value: '0'
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+logging:
+  level:
+    online.dadazi.dadaziblog: debug
+    root: info
+  file:
+    path: C:/Users/lqk/Desktop/space/log
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

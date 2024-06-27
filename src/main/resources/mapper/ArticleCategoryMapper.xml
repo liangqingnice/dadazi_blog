@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.dadazi.dadaziblog.mapper.ArticleCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="online.dadazi.dadaziblog.pojo.ArticleCategory">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+            <result property="categoryAlias" column="category_alias" jdbcType="VARCHAR"/>
+            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delMark" column="del_mark" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,category_name,category_alias,
+        create_user,create_time,update_time,
+        del_mark
+    </sql>
+    <update id="chanDelStatus">
+        update  article_category  set del_mark=#{delMark} where id=#{id}
+    </update>
+
+    <select id="selectDelOne" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"></include>
+            FROM article_category
+        <where>
+            and del_mark=1 AND category_name=#{categoryName}
+        </where>
+        ORDER BY ID DESC
+        LIMIT 1
+    </select>
+</mapper>

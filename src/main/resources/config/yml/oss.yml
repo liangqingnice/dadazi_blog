@@ -1,0 +1,9 @@
+oss:
+  #是否开启
+  enable: flase
+  #服务商
+  provider: 0
+  #地域
+  demesne: 0
+  accessKey:
+  secretKey:
