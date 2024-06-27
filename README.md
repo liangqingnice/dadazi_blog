@@ -36,6 +36,8 @@ resources
 * mysql 8.0
 * jdk 17
 * maven 3.9.5
+* node 18.19.1
+
 
 
 
