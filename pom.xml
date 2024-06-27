@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>online.dadazi</groupId>
-    <artifactId>dadazi-blog</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>dadazi_blog</name>
-    <description>dadazi_blog</description>
+    <artifactId>dadazi_blog</artifactId>
+    <version>1.0.0</version>
+    <name>嗒嗒子博客</name>
+    <description>这是一个简单的博客</description>
     <properties>
         <java.version>17</java.version>
         <mongoPlus>2.0.9.3</mongoPlus>
