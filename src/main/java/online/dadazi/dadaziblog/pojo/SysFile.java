@@ -4,16 +4,20 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import online.dadazi.dadaziblog.config.pojo.BasePojo;
 
 /**
- * 
- * @TableName sys_file
+ * 系统文件类
+ * @author lqk
  */
 @TableName(value ="sys_file")
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SysFile extends BasePojo implements Serializable {
     /**
      * id
@@ -61,5 +65,6 @@ public class SysFile extends BasePojo implements Serializable {
     private String sysFilePath;
 
     @TableField(exist = false)
+    @Serial
     private static final long serialVersionUID = 1L;
 }
