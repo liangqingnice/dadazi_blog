@@ -1,9 +1,7 @@
 oss:
-  #是否开启
-  enable: flase
-  #服务商
-  provider: 0
-  #地域
-  demesne: 0
+  enable: false
+  provider:
+  demesne:
   accessKey:
   secretKey:
+  serviceDomain: blog.dadazi.online
