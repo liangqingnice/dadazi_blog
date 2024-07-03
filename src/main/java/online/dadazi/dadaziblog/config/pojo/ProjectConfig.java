@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Configuration
 @ConfigurationProperties(prefix = "project")
-@PropertySource(value="classpath:config/yml/project.yml",factory = YmlPropertySourceFactory.class)
+@PropertySource(name = "project", value = "classpath:config/yml/project.yml", factory = YmlPropertySourceFactory.class)
 @Component
 @ToString
 @Data
@@ -48,7 +48,7 @@ public class ProjectConfig {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         ProjectConfig.name = name;
     }
 
