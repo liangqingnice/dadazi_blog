@@ -8,6 +8,7 @@
                 @onDestroyed="handleDestroyed" />
         </div>
     </div>
+    <hr>
 </template>
 
 <script setup lang="ts">
@@ -23,17 +24,19 @@ Boot.registerModule(markdownModule)
 //ctrl+enter
 Boot.registerModule(ctrlEnterModule)
 interface Props {
-    textVal: string | undefined
+    modelValue: string | undefined | null
     mode?: string
     placeholder: string
 }
+
 const props = defineProps<Props>();
-console.log(props);
+const emit = defineEmits(['update:modelValue']);
+
 // 编辑器实例，必须用 shallowRef，重要！
 const editorRef = shallowRef()
 
 // 内容 HTML
-const valueHtml = ref(props.textVal)
+const valueHtml = ref<string | null | undefined>(props.modelValue)
 
 // 模拟 ajax 异步获取内容
 onMounted(() => {
@@ -42,7 +45,7 @@ onMounted(() => {
 
 
 watch(props, (newVal: Props) => {
-    valueHtml.value = newVal.textVal
+    valueHtml.value = newVal.modelValue
 })
 
 
@@ -61,6 +64,8 @@ const handleCreated = (editor: IDomEditor) => {
 }
 const handleChange = (editor: IDomEditor) => {
     console.log('change:', editor.getHtml());
+    emit('update:modelValue', editor.getHtml());j
+
 }
 const handleDestroyed = (editor: IDomEditor) => {
     console.log('destroyed', editor)
