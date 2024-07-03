@@ -1,5 +1,5 @@
 <template>
-    <div clss="zinde10">
+    <div class="zinde10">
         <div style="border: 1px solid #ccc; margin-top: 10px;">
             <Toolbar :editor="editorRef" :defaultConfig="toolbarConfig" :mode="props.mode"
                 style="border-bottom: 1px solid #ccc" />
@@ -24,7 +24,7 @@ Boot.registerModule(markdownModule)
 //ctrl+enter
 Boot.registerModule(ctrlEnterModule)
 interface Props {
-    modelValue: string | undefined | null
+    modelValue: string | undefined
     mode?: string
     placeholder: string
 }
@@ -36,7 +36,7 @@ const emit = defineEmits(['update:modelValue']);
 const editorRef = shallowRef()
 
 // 内容 HTML
-const valueHtml = ref<string | null | undefined>(props.modelValue)
+const valueHtml = ref<string  | undefined>(props.modelValue)
 
 // 模拟 ajax 异步获取内容
 onMounted(() => {
@@ -64,14 +64,14 @@ const handleCreated = (editor: IDomEditor) => {
 }
 const handleChange = (editor: IDomEditor) => {
     console.log('change:', editor.getHtml());
-    emit('update:modelValue', editor.getHtml());j
+    emit('update:modelValue', editor.getHtml());
 
 }
 const handleDestroyed = (editor: IDomEditor) => {
     console.log('destroyed', editor)
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .zinde10 {
     position: relative;
     z-index: 10;
