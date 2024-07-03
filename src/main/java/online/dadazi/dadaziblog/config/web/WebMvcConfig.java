@@ -31,11 +31,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(sysInterceptor).excludePathPatterns("/sys/user/login", "/sys/user/login", "/" + FileUtil.uploadDir + "/**");
+        registry.addInterceptor(sysInterceptor).excludePathPatterns("/sys/user/login", "/sys/user/login", "/" + FileUtil.UPLOAD_DIR + "/**");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(FileUtil.uploadDir + "/**").addResourceLocations("file:" + ProjectConfig.getUploadDir() + "/");
+        registry.addResourceHandler(FileUtil.UPLOAD_DIR + "/**").addResourceLocations("file:" + ProjectConfig.getUploadDir() + "/");
     }
 }
