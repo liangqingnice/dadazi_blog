@@ -30,7 +30,7 @@ public class HandlerRequestBodyAdvice implements RequestBodyAdvice {
      * @param targetType the target type, not necessarily the same as the method
      * parameter type, e.g. for {@code HttpEntity<String>}.
      * @param converterType the selected converter type
-     * @return
+     * @return Boolean
      */
     @Override
     public boolean supports(MethodParameter methodParameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -44,7 +44,7 @@ public class HandlerRequestBodyAdvice implements RequestBodyAdvice {
      * @param targetType the target type, not necessarily the same as the method
      * parameter type, e.g. for {@code HttpEntity<String>}.
      * @param converterType the converter used to deserialize the body
-     * @return
+     * @return HttpInputMessage
      * @throws IOException
      */
     @Override
@@ -60,7 +60,7 @@ public class HandlerRequestBodyAdvice implements RequestBodyAdvice {
      * @param targetType the target type, not necessarily the same as the method
      * parameter type, e.g. for {@code HttpEntity<String>}.
      * @param converterType the converter used to deserialize the body
-     * @return
+     * @return Object
      */
     @Override
     public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -91,7 +91,7 @@ public class HandlerRequestBodyAdvice implements RequestBodyAdvice {
      * @param targetType the target type, not necessarily the same as the method
      * parameter type, e.g. for {@code HttpEntity<String>}.
      * @param converterType the selected converter type
-     * @return
+     * @return handleEmptyBody
      */
     @Override
     public Object handleEmptyBody(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType, Class<? extends HttpMessageConverter<?>> converterType) {
