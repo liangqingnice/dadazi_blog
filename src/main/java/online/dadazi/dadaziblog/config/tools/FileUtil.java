@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
+import static online.dadazi.dadaziblog.config.tools.NetUtil.isHttpUrl;
 /**
  * 文件工具类
  *
@@ -121,5 +122,60 @@ public class FileUtil {
             return OssConfig.serviceDomain;
         }
         return ServletUtil.getDoMainName();
+    }
+
+    /**
+     * 获取入库文件路径
+     * @param s 路径
+     * @return
+     */
+    public static String getDbFilePath(String s) {
+        String staticDoMain = getStaticDoMain();
+        if (StrUtil.isAllBlank(s,staticDoMain)) {
+            return s;
+        }
+        if (!isHttpAllPath(staticDoMain, s)) {
+            return s;
+        }
+        return removeBasePath(staticDoMain, s);
+    }
+
+
+    /**
+     * 获取入库文件路径
+     * @param s 路径
+     * @return
+     */
+    public static String getAllFilePath(String s) {
+        String staticDoMain = getStaticDoMain();
+        if (StrUtil.isAllBlank(s,staticDoMain)) {
+            return s;
+        }
+        if (isHttpAllPath(staticDoMain, s)) {
+            return s;
+        }
+        return staticDoMain+s;
+    }
+
+    private static String removeStartSlash(String url) {
+        if (url.startsWith(SLASH)) {
+            return removeStartSlash(url.substring(1, url.length()));
+        }
+        return url;
+    }
+
+    private static String removeEndSlash(String url) {
+        if (url.endsWith(SLASH)) {
+            return removeEndSlash(url.substring(0, url.length() - 1));
+        }
+        return url;
+    }
+
+    private static boolean isHttpAllPath(String basePath, String path) {
+        return isHttpUrl(path) && path.startsWith(basePath);
+    }
+
+    private static String removeBasePath(String basePath, String imgUrl) {
+        return imgUrl.replace(removeEndSlash(basePath), "");
     }
 }
