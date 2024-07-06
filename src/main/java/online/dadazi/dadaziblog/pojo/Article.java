@@ -7,22 +7,26 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import online.dadazi.dadaziblog.config.annotation.PathHandler;
+import online.dadazi.dadaziblog.config.mybatis.JsonTypeHandler;
 import online.dadazi.dadaziblog.config.pojo.BasePojo;
 
 /**
  * 文章表
  * @author lqk
  */
-@TableName(value ="article")
+@TableName(value ="article",autoResultMap = true)
 @Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@PathHandler
 public class Article extends BasePojo implements Serializable {
     /**
      * ID
@@ -45,8 +49,10 @@ public class Article extends BasePojo implements Serializable {
     /**
      * 文章封面
      */
-    @NotBlank(message = "请上传图片")
-    private String coverImg;
+    @NotNull(message = "请上传图片")
+    @TableField(typeHandler = JsonTypeHandler.class)
+    @PathHandler
+    private List<String> coverImg;
 
     /**
      * 文章状态: 只能是[已发布] 或者 [草稿]
